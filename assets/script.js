@@ -15,6 +15,8 @@ class FWT {
     }
 
     start() {
+        const _this = this;
+        
         $('#jump-form').submit((e) => {
             e.preventDefault();
             const nextIndex = this._words.indexOf($('#jump-input').val().toUpperCase());
@@ -26,27 +28,37 @@ class FWT {
             this.render();
         })
 
+        $('#main-form').on('input', function() {
+            if ($('#main-input').val().indexOf(' ') !== -1) {
+                _this.processInput();
+            }
+        });
+
         $('#main-form').submit((e) => {
             e.preventDefault();
-            const submitValue = $('#main-input').val().toUpperCase();
-
-            if (submitValue === this._words[this._index]) {
-                $('#main-input').css("background-color", "#6ab04c");
-            } else {
-                $('#main-input').css("background-color", "#ff7979");
-                this._wrong++;
-            }
-
-            $('#main-input').val('')
-            this._total++;
-            this._index++;
-            this.render();
-
-            // Reset css after 200ms
-            setTimeout(() => {
-                $('#main-input').css("background-color", "white");
-            }, 200) // Change this if you want
+            this.processInput();
         });
+    }
+
+    processInput() {
+        const submitValue = $.trim($('#main-input').val().toUpperCase());
+
+        if (submitValue === this._words[this._index]) {
+            $('#main-input').css("background-color", "#6ab04c");
+        } else {
+            $('#main-input').css("background-color", "#ff7979");
+            this._wrong++;
+        }
+
+        $('#main-input').val('')
+        this._total++;
+        this._index++;
+        this.render();
+
+        // Reset css after 200ms
+        setTimeout(() => {
+            $('#main-input').css("background-color", "white");
+        }, 200) // Change this if you want
     }
 
     render() {

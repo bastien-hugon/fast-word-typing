@@ -28,22 +28,24 @@ input {
 
 .w {
     display: inline;
-    font-size: 34pt;
     margin: 5pt;
 }
 
 .w1 {
-    color: grey;
+    color: black;
+    font-size: 20pt;
 }
 
 .w2 {
-    color: #CDD1D0;
+    color: grey;
+    font-size: 26pt;
 }
 
 .w3 {
     color: #fff;
     background-color: 'grey';
     border-radius: 3pt;
+    font-size: 34pt;
 }
 
 #main-input {
