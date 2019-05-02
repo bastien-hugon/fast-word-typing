@@ -1,0 +1,58 @@
+body {
+    background-color: #2f3640;
+    overflow-x: hidden;
+    width: 100;
+}
+
+p {
+    color: #f5f6fa
+}
+
+input {
+    width: 300pt;
+    font-size: 42pt;
+    color: #130f40;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.jump-to {
+    float: left;
+    margin-right: 12pt;
+    font-size: 42pt;
+}
+
+.score {
+    font-size: 30pt;
+}
+
+.w {
+    display: inline;
+    font-size: 34pt;
+    margin: 5pt;
+}
+
+.w1 {
+    color: grey;
+}
+
+.w2 {
+    color: #CDD1D0;
+}
+
+.w3 {
+    color: #fff;
+    background-color: 'grey';
+    border-radius: 3pt;
+}
+
+#main-input {
+    margin-top: 50pt;
+}
+
+.l {
+    font-size: 32pt;
+    padding-left: 5pt;
+    border-top-left-radius: 5pt;
+    border-bottom-left-radius: 5pt;
+}
