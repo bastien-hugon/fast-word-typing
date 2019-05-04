@@ -1,5 +1,5 @@
 body {
-    background-color: #2f3640;
+    background-color: #38444d;
     overflow-x: hidden;
     width: 100;
 }
@@ -9,17 +9,23 @@ p {
 }
 
 input {
-    width: 300pt;
-    font-size: 42pt;
+    width: 250pt;
+    font-size: 28pt;
     color: #130f40;
-    border-radius: 5px;
+    border-radius: 3px;
     text-align: center;
+}
+
+input#jump-input {
+	width: 150pt;
+    font-size: 16pt;
+	text-align: left;
 }
 
 .jump-to {
     float: left;
-    margin-right: 12pt;
-    font-size: 42pt;
+    margin-right: 8pt;
+    font-size: 20pt;
 }
 
 .score {
@@ -32,7 +38,7 @@ input {
 }
 
 .w1 {
-    color: black;
+    color: grey;
     font-size: 20pt;
 }
 
@@ -46,6 +52,19 @@ input {
     background-color: 'grey';
     border-radius: 3pt;
     font-size: 34pt;
+}
+.w4 {
+    color: #ddd;
+    font-size: 30pt;
+}
+
+.nb_mots {
+	display: inline;
+    margin: 5pt;
+    color: #ddd;
+    background-color: 'grey';
+    border-radius: 3pt;
+    font-size: 28pt;	
 }
 
 #main-input {

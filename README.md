@@ -22,4 +22,4 @@ DD
 
 ## Credits
 
-Author: @bastien-hugon
+Authors: @bastien-hugon @Sardoche

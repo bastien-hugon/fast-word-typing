@@ -2,6 +2,52 @@
  * @description Main class of the project
  * @author Bastien-Hugon
  */
+ 
+h=00;m=00;s=00; pause=1; now=0; nb_mots=0;
+function date_heure() {
+	now=Date.now();
+	if(now-last_now>1500) { pause=1; }
+	if(pause==0) { 
+		s++; 		
+		if(s==60) { 
+			s=0;
+			m++;
+			push_stats();
+			if(m==60) { m=0; h++; }
+		}
+		ss=s<10?"0"+s:s;
+		mm=m<10?"0"+m:m;
+		hh=h<10?"0"+h:h;
+		document.getElementById('chrono').innerHTML="Total : "+hh+":"+mm+":"+ss;
+	}
+}
+setInterval("date_heure()", 1000);
+
+last_now=0;
+addEventListener('keydown', function(event) {
+	last_now=Date.now();
+	pause=0;
+}
+);
+
+les_minutes=0;
+les_cpm=0;
+les_mpm=0;
+var GlobalArrayX = [];
+var GlobalArrayY1 = [];
+var GlobalArrayY2 = [];
+function push_stats() {
+	GlobalArrayX.push(les_minutes);
+	GlobalArrayY1.push(les_cpm);
+	GlobalArrayY2.push(les_mpm);
+	les_minutes++;
+	les_cpm=0;
+	les_mpm=0;
+	chart.update();
+}
+
+ 
+ 
 class FWT {
     constructor(data) {
         this._words = data.split('\n');
@@ -22,7 +68,7 @@ class FWT {
             const nextIndex = this._words.indexOf($('#jump-input').val().toUpperCase());
             if (nextIndex !== -1) {
                 this._index = nextIndex;
-                $('#jump-input').val('')
+                $('#jump-input').val('');
             } else 
                 alert('Word not found');
             this.render();
@@ -45,16 +91,18 @@ class FWT {
 
         if (submitValue === this._words[this._index]) {
             $('#main-input').css("background-color", "#6ab04c");
+			les_cpm+=$('#main-input').val().length;	
+			les_mpm++;
+			nb_mots++;
+			$('#nb_mots').text(nb_mots+'/65210');
+			$('#main-input').val('');
+			this._total++;
+			this._index++;	
+			this.render();
         } else {
             $('#main-input').css("background-color", "#ff7979");
-            this._wrong++;
+            $('#main-input').val($.trim($('#main-input').val()));
         }
-
-        $('#main-input').val('')
-        this._total++;
-        this._index++;
-        this.render();
-
         // Reset css after 200ms
         setTimeout(() => {
             $('#main-input').css("background-color", "white");
@@ -65,14 +113,10 @@ class FWT {
         // Render the words
         for (let i = -3; i < 3; i++) {
             if (this._index + i >= 0)
-                $('#w'+(i+3)).text(this._words[this._index + i]);
+                $('#w'+(i+3)).text(this._words[this._index + i].toLowerCase());
             else
                 $('#w'+(i+3)).text('');
         }
-
-        // Render Score
-        $('#score').text('Wrongs: ' + this._wrong + '/' + this._total);
-
         // Render Chapter
         for (let i = 1; i < 6; i++)
             $('#l' + i).text('');
